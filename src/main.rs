@@ -52,7 +52,7 @@ fn generate_bigrams(corpus: &str) -> Bigrams {
 
 /// Generates a string of amount words from bigrams
 fn generate_words<'a>(bigrams: &Bigrams, amount: u32) -> Result<String, &'a str> {
-    // Pick a random bigram to start the sentence with and unpack it to first and second
+    // Pick a random bigram to start the string with and unpack it to first and second
     let (first, mut second) = **match thread_rng()
                                       .choose(&bigrams.keys().collect::<Vec<_>>()) {
         Some(v) => v,
@@ -68,7 +68,7 @@ fn generate_words<'a>(bigrams: &Bigrams, amount: u32) -> Result<String, &'a str>
     let mut current_bigram = (first, second);
     // next is the next word in the sentence.
     let mut next;
-    // Generate amount-2
+    // Generate amount-2 words
     for _ in 0..amount-2 {
         // Push a space to the sentence
         s.push(' ');
@@ -89,9 +89,10 @@ fn generate_words<'a>(bigrams: &Bigrams, amount: u32) -> Result<String, &'a str>
         // and second is now next
         second = next;
     }
-    // We have finished generating the sentence, so return it inside an Ok
+    // We have finished generating the words, so return them inside an Ok
     Ok(s)
 }
+
 /// Generates a sentence from bigrams
 fn generate_sentence<'a>(bigrams: &Bigrams) -> Result<String, &'a str> {
     // The characters that determine the end of a sentence
@@ -153,7 +154,7 @@ fn generate_sentences<'a>(bigrams: &Bigrams, amount: u32) -> Result<String, &'a 
     // Repeat amount-1 times
     for _ in 0..amount-1 {
         // Push a newline
-        s.push('\n');
+        s.push_str("\n\n");
         // Push a new sentence to the string
         s.push_str(&try!(generate_sentence(&bigrams)));
     }
