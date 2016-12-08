@@ -1,7 +1,7 @@
 # rusty-markov
 A random text generator using Markov chains.
 
-Implemented in Rust for <a href="https://bookowl.github.io/2016/12/07/Rusty-(Markov)-Chains/">this blog post</a>.
+Implemented in Rust for <a href="https://bookowl.github.io/2016/12/08/Rusty-(Markov)-Chains/">this blog post</a>.
 
 ## Building
 1. Install Rust and Cargo
